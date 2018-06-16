@@ -11,18 +11,29 @@ import net.bytebuddy.jar.asm.commons.GeneratorAdapter;
 
 public class Order {
 	
-	public static int randNum(int a, int b) {
+	public static int randNum(int a, int b) {//a=0,b=10==>rd.nextInt(10+1-0)+0===>nextInt(11)
 		Random rd = new Random();
-		return rd.nextInt(b + 1 - a) + a;
+		return rd.nextInt(b + 1 - a) + a; //a=1,b=51===> 51+1-1 + 1
 		}
 	
 	public static void main(String[] args) throws InterruptedException {
 		
 		String[] names = {"poo","qwr","sxs","povl","zaq","ddfd","kyuky","wer","avnb","ptre","aiias","dsd","aaghas","dzxad"};
-		String name = names[randNum(0, 13)];
-		String [] number= {"0","1","2","3","4","5","6","7","8","9"};
-		String zipCode = number[randNum(0, 9)]+number[randNum(0, 9)]+number[randNum(0, 9)]+number[randNum(0, 9)];
+		String name = "";
+		char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+		Random random = new Random();
+		for(int i = 0;i<5;i++) {
+			char word = characters[random.nextInt(characters.length)];
+			name = name + word;
+		}
 		
+		
+		
+		String [] number= {"0","1","2","3","4","5","6","7","8","9"};
+		String zipCode = "";
+		for(int i = 1; i<=4;i++) {
+			zipCode = zipCode + number[randNum(0, 9)];
+		}
 		
 		
 		System.setProperty("webdriver.chrome.driver",
@@ -51,7 +62,7 @@ public class Order {
 			
 			//Thread.sleep(1500);
 		
-			long first15 = (long) Math.random()*(100000000000000L);
+			long first15 = (long) (Math.random()*100000000000000L);
 			String cardnum ="";
 			
 			int cardtype = randNum(1,3);
@@ -86,7 +97,9 @@ public class Order {
 //			else if(numb==3) {
 //				driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_2")).click();
 //				driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_2")).sendKeys("3" + randNum(0, 13));
-			
+//			
+				
+				
 			
 			
 			
